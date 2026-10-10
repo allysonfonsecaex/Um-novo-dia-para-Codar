@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora de Codar - Arrays</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .atividade {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #4a5568;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #4a5568;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 12px 18px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 3px;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .btn-limpar {
+            background: #718096;
+        }
+
+        .btn-limpar:hover {
+            background: #4a5568;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            min-height: 50px;
+            overflow-wrap: anywhere;
+        }
+
+        .mensagem {
+            padding: 9px 12px;
+            margin: 6px 0;
+            border-radius: 8px;
+            background: white;
+            border-left: 4px solid #667eea;
+        }
+
+        .sucesso {
+            border-left-color: #48bb78;
+            color: #22543d;
+        }
+
+        .erro {
+            border-left-color: #fc8181;
+            color: #742a2a;
+        }
+
+        .info {
+            border-left-color: #4299e1;
+            color: #2a4365;
+        }
+
+        .contato-item {
+            padding: 10px;
+            margin: 6px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #48bb78;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            background: #edf2f7;
+            border-radius: 8px;
+            text-align: center;
+            color: #4a5568;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 18px;
+            }
+
+            .atividade {
+                padding: 14px;
+            }
+
+            button {
+                width: 100%;
+                margin: 4px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hora de Codar</h1>
+        <p class="subtitle">Atividades de Estruturas de Dados: Arrays</p>
+
+        
+        <section class="atividade">
+            <h2>1 - Estudantes</h2>
+            <p>Digite os nomes dos estudantes. Digite PARE para finalizar e exibir a lista.</p>
+
+            <input type="text" id="nomeEstudante" placeholder="Nome do estudante">
+
+            <button onclick="adicionarEstudante()">Cadastrar estudante</button>
+            <button onclick="finalizarEstudantes()">PARE / Finalizar</button>
+
+            <div class="output" id="outputEstudantes">
+                <div class="mensagem info">Nenhum estudante cadastrado.</div>
+            </div>
+        </section>
+
+        
+        <section class="atividade">
+            <h2>2 - Planetas</h2>
+            <p>Planetas: Mercúrio, Vênus, Terra, Marte, Júpiter, Saturno, Urano, Netuno e Plutão.</p>
+
+            <input type="text" id="nomePlaneta" placeholder="Digite o nome de um planeta">
+
+            <button onclick="buscarPlaneta()">Verificar planeta</button>
+
+            <div class="output" id="outputPlanetas">
+                <div class="mensagem info">Digite um planeta para verificar.</div>
+            </div>
+        </section>
+
+        
+        <section class="atividade">
+            <h2>3 - Compras</h2>
+            <p>Frutas disponíveis: <span id="listaFrutas"></span></p>
+            <p>Digite o nome de uma fruta para removê-la. Digite PARE para finalizar.</p>
+
+            <input type="text" id="nomeFruta" placeholder="Nome da fruta">
+
+            <button onclick="removerFruta()">Remover fruta</button>
+            <button onclick="finalizarCompras()">PARE / Finalizar</button>
+
+            <div class="output" id="outputCompras">
+                <div class="mensagem info">Sua lista de compras está pronta.</div>
+            </div>
+        </section>
+
+        
+        <section class="atividade">
+            <h2>4 - Agenda de Contatos</h2>
+            <p>Cadastre contatos, busque, remova ou liste os contatos existentes.</p>
+
+            <button onclick="adicionarContato()">Adicionar</button>
+            <button onclick="buscarContato()">Buscar</button>
+            <button onclick="removerContato()">Remover</button>
+            <button onclick="listarContatos()">Listar</button>
+            <button onclick="sairAgenda()">Sair</button>
+            <button class="btn-limpar" onclick="limparAgendaOutput()">Limpar saída</button>
+
+            <div class="output" id="outputAgenda">
+                <div class="mensagem info">Sistema pronto! Escolha uma operação.</div>
+            </div>
+
+            <div class="status">
+                Total de contatos: <span id="totalContatos">0</span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        
+
+        let estudantes = [];
+        let estudantesFinalizados = false;
+
+        function adicionarEstudante() {
+            if (estudantesFinalizados) {
+                mostrarMensagem(
+                    'outputEstudantes',
+                    'O cadastro de estudantes ja foi finalizado.',
+                    'erro'
+                );
+                return;
+            }
+
+            const campo = document.getElementById('nomeEstudante');
+            const nome = campo.value.trim();
+
+            if (nome.toUpperCase() === 'PARE') {
+                finalizarEstudantes();
+                return;
+            }
+
+            if (nome === '') {
+                mostrarMensagem(
+                    'outputEstudantes',
+                    'Digite o nome de um estudante.',
+                    'erro'
+                );
+                return;
+            }
+
+            estudantes.push(nome);
+            campo.value = '';
+
+            mostrarMensagem(
+                'outputEstudantes',
+                `Estudante ${nome} cadastrado com sucesso!`,
+                'sucesso'
+            );
+        }
+ //1
+        function finalizarEstudantes() {
+            if (estudantesFinalizados) {
+                return;
+            }
+
+            estudantesFinalizados = true;
+
+            const output = document.getElementById('outputEstudantes');
+            output.innerHTML = '';
+
+            mostrarMensagem(
+                'outputEstudantes',
+                `Quantidade de estudantes cadastrados: ${estudantes.length}`,
+                'sucesso'
+            );
+
+            if (estudantes.length === 0) {
+                mostrarMensagem(
+                    'outputEstudantes',
+                    'Nenhum estudante cadastrado.',
+                    'info'
+                );
+            } else {
+                mostrarMensagem(
+                    'outputEstudantes',
+                    `Lista de estudantes: ${estudantes.join(', ')}`,
+                    'info'
+                );
+            }
+
+            document.getElementById('nomeEstudante').disabled = true;
+        }
+
+       //2
+
+        const planetas = [
+            'Mercúrio',
+            'Vênus',
+            'Terra',
+            'Marte',
+            'Júpiter',
+            'Saturno',
+            'Urano',
+            'Netuno',
+            'Plutão'
+        ];
+
+        function buscarPlaneta() {
+            const nome = document.getElementById('nomePlaneta').value.trim();
+
+            if (nome === '') {
+                mostrarMensagem(
+                    'outputPlanetas',
+                    'Digite o nome de um planeta.',
+                    'erro'
+                );
+                return;
+            }
+
+            const encontrado = planetas.some(
+                planeta => planeta.toLowerCase() === nome.toLowerCase()
+            );
+
+            if (encontrado) {
+                mostrarMensagem(
+                    'outputPlanetas',
+                    `${nome} esta na lista de planetas.`,
+                    'sucesso'
+                );
+            } else {
+                mostrarMensagem(
+                    'outputPlanetas',
+                    `${nome} nao esta na lista de planetas.`,
+                    'erro'
+                );
+            }
+        }
+
+        //  3
+
+        let frutas = ['Maçã', 'Banana', 'Laranja', 'Uva', 'Morango'];
+        let comprasFinalizadas = false;
+
+        function atualizarListaFrutas() {
+            document.getElementById('listaFrutas').textContent =
+                frutas.length > 0 ? frutas.join(', ') : 'Nenhuma fruta disponível';
+        }
+
+        function removerFruta() {
+            if (comprasFinalizadas) {
+                mostrarMensagem(
+                    'outputCompras',
+                    'A lista de compras ja foi finalizada.',
+                    'erro'
+                );
+                return;
+            }
+
+            const campo = document.getElementById('nomeFruta');
+            const nome = campo.value.trim();
+
+            if (nome.toUpperCase() === 'PARE') {
+                finalizarCompras();
+                return;
+            }
+
+            if (nome === '') {
+                mostrarMensagem(
+                    'outputCompras',
+                    'Digite o nome de uma fruta.',
+                    'erro'
+                );
+                return;
+            }
+
+            const index = frutas.findIndex(
+                fruta => fruta.toLowerCase() === nome.toLowerCase()
+            );
+
+            if (index !== -1) {
+                const removida = frutas[index];
+                frutas.splice(index, 1);
+
+                mostrarMensagem(
+                    'outputCompras',
+                    'Fruta foi retirada da lista',
+                    'sucesso'
+                );
+
+                atualizarListaFrutas();
+                campo.value = '';
+
+                if (frutas.length === 0) {
+                    comprasFinalizadas = true;
+
+                    mostrarMensagem(
+                        'outputCompras',
+                        'Lista de compras finalizada',
+                        'sucesso'
+                    );
+
+                    campo.disabled = true;
+                }
+            } else {
+                mostrarMensagem(
+                    'outputCompras',
+                    'Fruta indisponível no nosso mercado',
+                    'erro'
+                );
+            }
+        }
+
+        function finalizarCompras() {
+            if (comprasFinalizadas) {
+                return;
+            }
+
+            comprasFinalizadas = true;
+
+            mostrarMensagem(
+                'outputCompras',
+                `Frutas restantes: ${frutas.length > 0 ? frutas.join(', ') : 'Nenhuma'}`,
+                'info'
+            );
+
+            if (frutas.length === 0) {
+                mostrarMensagem(
+                    'outputCompras',
+                    'Lista de compras finalizada',
+                    'sucesso'
+                );
+            }
+
+            document.getElementById('nomeFruta').disabled = true;
+        }
+
+        // 4
+
+        let contatos = [];
+        let agendaEncerrada = false;
+
+        function mostrarMensagem(id, texto, tipo = 'info') {
+            const output = document.getElementById(id);
+            const div = document.createElement('div');
+
+            div.className = `mensagem ${tipo}`;
+            div.textContent = texto;
+
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function adicionarContato() {
+            if (agendaEncerrada) return;
+
+            const nome = prompt('Digite o nome do contato:');
+
+            if (nome === null) return;
+
+            if (nome.trim() === '') {
+                mostrarMensagem('outputAgenda', 'Nome nao pode estar vazio!', 'erro');
+                return;
+            }
+
+            const telefone = prompt('Digite o telefone do contato:');
+
+            if (telefone === null) return;
+
+            if (telefone.trim() === '') {
+                mostrarMensagem('outputAgenda', 'Telefone nao pode estar vazio!', 'erro');
+                return;
+            }
+
+            contatos.push({
+                nome: nome.trim(),
+                telefone: telefone.trim()
+            });
+
+            mostrarMensagem('outputAgenda', 'Contato adicionado!', 'sucesso');
+            atualizarContador();
+        }
+
+        function buscarContato() {
+            if (agendaEncerrada) return;
+
+            const nome = prompt('Digite o nome do contato para buscar:');
+
+            if (nome === null) return;
+
+            const encontrado = contatos.find(
+                contato => contato.nome.toLowerCase() === nome.trim().toLowerCase()
+            );
+
+            if (encontrado) {
+                mostrarMensagem('outputAgenda', `Nome: ${encontrado.nome}`, 'sucesso');
+                mostrarMensagem('outputAgenda', `Telefone: ${encontrado.telefone}`, 'sucesso');
+            } else {
+                mostrarMensagem('outputAgenda', 'Contato não encontrado', 'erro');
+            }
+        }
+
+        function removerContato() {
+            if (agendaEncerrada) return;
+
+            const nome = prompt('Digite o nome do contato para remover:');
+
+            if (nome === null) return;
+
+            const index = contatos.findIndex(
+                contato => contato.nome.toLowerCase() === nome.trim().toLowerCase()
+            );
+
+            if (index !== -1) {
+                contatos.splice(index, 1);
+                mostrarMensagem('outputAgenda', 'Contato removido!', 'sucesso');
+                atualizarContador();
+            } else {
+                mostrarMensagem('outputAgenda', 'Contato não encontrado', 'erro');
+            }
+        }
+
+        function listarContatos() {
+            if (agendaEncerrada) return;
+
+            const output = document.getElementById('outputAgenda');
+            output.innerHTML = '';
+
+            if (contatos.length === 0) {
+                mostrarMensagem(
+                    'outputAgenda',
+                    'Nenhum contato cadastrado.',
+                    'info'
+                );
+            } else {
+                contatos.forEach(contato => {
+                    const div = document.createElement('div');
+                    div.className = 'contato-item';
+
+                    const nome = document.createElement('span');
+                    nome.textContent = contato.nome;
+
+                    const telefone = document.createElement('span');
+                    telefone.textContent = contato.telefone;
+
+                    div.appendChild(nome);
+                    div.appendChild(telefone);
+                    output.appendChild(div);
+                });
+            }
+
+            atualizarContador();
+        }
+
+        function atualizarContador() {
+            document.getElementById('totalContatos').textContent = contatos.length;
+        }
+
+        function limparAgendaOutput() {
+            if (agendaEncerrada) return;
+
+            document.getElementById('outputAgenda').innerHTML = '';
+            mostrarMensagem('outputAgenda', 'Saida limpa!', 'info');
+        }
+
+        function sairAgenda() {
+            if (agendaEncerrada) return;
+
+            mostrarMensagem(
+                'outputAgenda',
+                `Agenda encerrada. Total de contatos: ${contatos.length}`,
+                'sucesso'
+            );
+
+            agendaEncerrada = true;
+
+            const botoes = document.querySelectorAll(
+                '.atividade:nth-of-type(4) button'
+            );
+
+            botoes.forEach(botao => botao.disabled = true);
+        }
+
+        // INICIALIZACAO
+
+        atualizarListaFrutas();
+        atualizarContador();
+    </script>
+</body>
+
+</html>
